@@ -1,0 +1,60 @@
+get_data:
+  cmd: python get_data.py
+  deps:
+  - path: get_data.py
+    md5: 6ff8f4ca28cc1de7d0679828652f5974
+  outs:
+  - path: data_raw.csv
+    md5: a6aec8da63a5fa2619af025a76746f29
+process:
+  cmd: python preprocessing.py
+  deps:
+  - path: data_raw.csv
+    md5: a6aec8da63a5fa2619af025a76746f29
+  - path: preprocessing.py
+    md5: 6571790b7c75e0013bfad154e918a934
+  outs:
+  - path: data_processed.csv
+    md5: 3b20a3a6ac0570f3de28b77d1e88f932
+train:
+  cmd: python train.py
+  deps:
+  - path: data_processed.csv
+    md5: 3b20a3a6ac0570f3de28b77d1e88f932
+  - path: train.py
+    md5: f1767e87090f71fe432bdb01b2802fdf
+  outs:
+  - path: by_region.png
+    md5: abd92b0fe313234b3742aa466446741b
+  - path: metrics.json
+    md5: f4844c28505568f336c5f91db3f1beb3
+getting_data:
+  cmd: python get_data.py
+  deps:
+  - path: get_data.py
+    md5: 6ff8f4ca28cc1de7d0679828652f5974
+  outs:
+  - path: data_raw.csv
+    md5: a6aec8da63a5fa2619af025a76746f29
+process_data:
+  cmd: python preprocessing.py
+  deps:
+  - path: data_raw.csv
+    md5: a6aec8da63a5fa2619af025a76746f29
+  - path: preprocessing.py
+    md5: 6571790b7c75e0013bfad154e918a934
+  outs:
+  - path: data_processed.csv
+    md5: 3b20a3a6ac0570f3de28b77d1e88f932
+training:
+  cmd: python train.py
+  deps:
+  - path: data_processed.csv
+    md5: 3b20a3a6ac0570f3de28b77d1e88f932
+  - path: train.py
+    md5: f1767e87090f71fe432bdb01b2802fdf
+  outs:
+  - path: by_region.png
+    md5: abd92b0fe313234b3742aa466446741b
+  - path: metrics.json
+    md5: f4844c28505568f336c5f91db3f1beb3

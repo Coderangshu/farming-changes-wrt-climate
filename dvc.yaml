@@ -1,0 +1,24 @@
+stages:
+  getting_data:
+    cmd: python get_data.py
+    deps:
+    - get_data.py
+    outs:
+    - data_raw.csv
+  process_data:
+    cmd: python preprocessing.py
+    deps:
+    - data_raw.csv
+    - preprocessing.py
+    outs:
+    - data_processed.csv
+  training:
+    cmd: python train.py
+    deps:
+    - data_processed.csv
+    - train.py
+    outs:
+    - by_region.png
+    metrics:
+    - metrics.json:
+        cache: false
